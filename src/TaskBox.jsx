@@ -1,7 +1,8 @@
 import clipboard from './assets/Clipboard.svg'
-import styles from './Tasks.module.css'
+import { Task } from './Task';
+import styles from './TaskBox.module.css'
 
-export function Tasks () {
+export function TaskBox () {
     return (
         <main className={styles.main}>
             <header className={styles.header}>
@@ -20,7 +21,8 @@ export function Tasks () {
                     <strong>Você ainda não tem tarefas cadastradas</strong>
                     <span>Crie tarefas e organize seus itens a fazer</span>
                 </div>
-                
+            <Task />
+            <Task />                
             </div>
         </main>
     );

@@ -1,7 +1,7 @@
 import { Form } from './Form';
 import './global.css'
 import { Header } from './Header'
-import { Tasks } from './Tasks';
+import { TaskBox } from './TaskBox';
 
 export function App() {
 
@@ -9,7 +9,7 @@ export function App() {
     <div>
       <Header />
       <Form />
-      <Tasks />
+      <TaskBox />
     </div>
     
   );
