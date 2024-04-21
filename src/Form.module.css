@@ -1,0 +1,47 @@
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -44px;
+    gap: 8px;
+}
+
+.textarea {
+    width: 736px;
+    height: 54px;
+    background: var(--gray-400);
+    color: var(--gray-100); 
+    border: 0;
+    resize: none;    
+    padding: 1rem;
+    border-radius: 8px;
+    color: var(--gray-100);
+    line-height: 1.4;
+    
+}
+
+.button {
+    height: 54px;
+    font-size: 14px;
+    color: var(--gray-100);
+    font-family: 'Inter', sans-serif;
+    background: var(--blue-dark);
+    padding: 16px;
+    border: 0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    line-height: 1.4;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.button:hover {
+    background: var(--blue);
+}
+
+.button > svg {
+    width: 16px;
+    height: 16px;;
+}
