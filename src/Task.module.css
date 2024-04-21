@@ -4,10 +4,11 @@
     background: var(--gray-400);
     padding: 16px;
     border-radius: 8px;
-    margin: 16px;
+    margin: 8px;
     width: 736px;
     justify-content: space-between;
     align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.247);
 }
 
 .newTask p {
@@ -28,9 +29,23 @@
 
 .newTask > input[type="checkbox"]:checked:not(hover) {
     background: var(--purple);
-    border: none;
+}
+
+.newTask > input[type="checkbox"]:checked + p {
+    text-decoration: line-through;
 }
 
 .newTask > input[type="checkbox"]:hover {
     background-color: var(--blue-dark);
 }
+
+.newTask > svg {
+    margin-right: 16px;
+    width: 24px;
+    height: 24px;
+    
+}
+.newTask > svg:hover {
+    fill: var(--danger);
+}
+

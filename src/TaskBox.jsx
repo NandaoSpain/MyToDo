@@ -16,13 +16,16 @@ export function TaskBox () {
                 </div>
             </header>
             <div className={styles.box}>
-                <div className={styles.content}>
+                <div className={styles.contentVoid}>
                     <img src={clipboard} alt="clipboard icon" />
                     <strong>Você ainda não tem tarefas cadastradas</strong>
                     <span>Crie tarefas e organize seus itens a fazer</span>
                 </div>
-            <Task />
-            <Task />                
+                <div>
+                    <Task />
+                    <Task />  
+                    <Task />
+                </div>                     
             </div>
         </main>
     );
