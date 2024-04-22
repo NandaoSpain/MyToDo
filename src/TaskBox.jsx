@@ -8,19 +8,28 @@ import { PlusCircle } from "@phosphor-icons/react";
 export function TaskBox () {
     const [newTask, setNewTask] = useState([]);       
     const [newTaskText, setNewTaskText] = useState('');
+    const [completedTasks, setCompletedTasks] = useState(0);
     
     function handleCreateNewTask () {
         event.preventDefault();
-        setNewTask([...newTask, newTaskText]);
-        setNewTaskText('');
-                
-        
+        setNewTask([...newTask, { text: newTaskText, completed: false }]);
+        setNewTaskText('');      
     }
     
     function handleNewTaskChange() {
         setNewTaskText(event.target.value);
     } 
     
+    function handleTaskCompletion(index) {
+        const updatedTasks = [...newTask];
+        updatedTasks[index] = {...updatedTasks[index], completed:true};
+        setNewTask(updatedTasks);
+        setCompletedTasks(completedTasks + 1);
+    }
+
+    const totalTasks = newTask.length;
+    const completedTasksCount = newTask.filter(task => task.completed).length;
+
     return (
         
         <main className={styles.main}>
@@ -39,11 +48,11 @@ export function TaskBox () {
             <header className={styles.header}>
                 <div>
                     <strong className={styles.created}>Tarefas criadas</strong>
-                    <span className={styles.counter}>0</span>
+                    <span className={styles.counter}>{totalTasks}</span>
                 </div>
                 <div>
                     <strong className={styles.concluded}>Concluídas</strong>
-                    <span className={styles.counter}>0</span>
+                    <span className={styles.counter}>{completedTasksCount} de {totalTasks}</span>
                 </div>
             </header>
             <div className={styles.box}>
@@ -53,12 +62,13 @@ export function TaskBox () {
                     <span>Crie tarefas e organize seus itens a fazer</span>
                 </div>
                 <div>
-                    {newTask.map((post, index) => (
-                        
+                    {newTask.map((task, index) => (                        
                         <Task 
                             key={index} 
-                            content={post} 
-                        />
+                            content={task.text}
+                            completed={task.completed}
+                            onComplete = {() => handleTaskCompletion(index)} 
+                        /> 
                     ))}
                                          
                 </div>                     
