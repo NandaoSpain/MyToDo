@@ -3,12 +3,15 @@ import { Task } from './Task';
 import styles from './TaskBox.module.css'
 import { useState } from 'react';
 import { PlusCircle } from "@phosphor-icons/react";
+import { ConfirmationModal } from './ConfirmationModal';
 
 
 export function TaskBox () {
     const [newTask, setNewTask] = useState([]);       
     const [newTaskText, setNewTaskText] = useState('');
     const [completedTasks, setCompletedTasks] = useState(0);
+    const [showComfirmationModal, setShowComfirmationModal] = useState(false);
+    const [taskToDelete, setTaskToDelete] = useState(null);
     
     function handleCreateNewTask () {
         event.preventDefault();
@@ -28,16 +31,22 @@ export function TaskBox () {
     }
 
     function handleDeleteTask(index) {
-        const confirmation = window.confirm("Tem certeza de que deseja excluir esta tarefa?");
-        if (confirmation) {
-            const updatedTasks = [...newTask];
-            updatedTasks.splice(index, 1);
-            setNewTask(updatedTasks);
-            setCompletedTasks(updatedTasks.filter(task => task.completed).length)
-    
-        }
+        setTaskToDelete(index);
+        setShowComfirmationModal(true);
     }
-    
+
+    function confirmdeleteTask() {
+        const updatedTasks = [...newTask];
+        updatedTasks.splice(taskToDelete, 1);
+        setNewTask(updatedTasks);
+        setCompletedTasks(updatedTasks.filter(task => task.completed).length);
+        setShowComfirmationModal(false);
+    }
+
+    function cancelDeleteTask() {
+        setShowComfirmationModal(false);
+    }
+
     const totalTasks = newTask.length;
     const completedTasksCount = newTask.filter(task => task.completed).length;
 
@@ -82,9 +91,19 @@ export function TaskBox () {
                             onDelete={() => handleDeleteTask(index)} 
                         /> 
                     ))}
+                    
                                          
-                </div>                     
+                </div>
+                                     
             </div>
+            {showComfirmationModal && (
+                <ConfirmationModal
+                    message="Tem certeza de que deseja excluir esta tarefa?"
+                    onCancel={cancelDeleteTask}
+                    onConfirm={confirmdeleteTask}
+                />
+            )}
+            
         </main>
     );
 }
