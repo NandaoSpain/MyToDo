@@ -49,3 +49,8 @@
     fill: var(--danger);
 }
 
+.completed {
+    text-decoration: line-through;
+    color: var(--gray-500);
+    border: none;
+}

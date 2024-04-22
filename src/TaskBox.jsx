@@ -22,11 +22,22 @@ export function TaskBox () {
     
     function handleTaskCompletion(index) {
         const updatedTasks = [...newTask];
-        updatedTasks[index] = {...updatedTasks[index], completed:true};
+        updatedTasks[index] = {...updatedTasks[index], completed: !updatedTasks[index].completed };
         setNewTask(updatedTasks);
-        setCompletedTasks(completedTasks + 1);
+        setCompletedTasks(updatedTasks.filter(task => task.completed).length);
     }
 
+    function handleDeleteTask(index) {
+        const confirmation = window.confirm("Tem certeza de que deseja excluir esta tarefa?");
+        if (confirmation) {
+            const updatedTasks = [...newTask];
+            updatedTasks.splice(index, 1);
+            setNewTask(updatedTasks);
+            setCompletedTasks(updatedTasks.filter(task => task.completed).length)
+    
+        }
+    }
+    
     const totalTasks = newTask.length;
     const completedTasksCount = newTask.filter(task => task.completed).length;
 
@@ -67,7 +78,8 @@ export function TaskBox () {
                             key={index} 
                             content={task.text}
                             completed={task.completed}
-                            onComplete = {() => handleTaskCompletion(index)} 
+                            onComplete = {() => handleTaskCompletion(index)}
+                            onDelete={() => handleDeleteTask(index)} 
                         /> 
                     ))}
                                          
