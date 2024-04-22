@@ -15,6 +15,10 @@
     font-size: 14px;
 }
 
+.svg {
+    cursor: pointer;
+}
+
 .newTask > input[type="checkbox"] {
     margin-right: 16px;
     background: var(--gray-400);

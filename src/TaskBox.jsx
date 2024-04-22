@@ -93,8 +93,7 @@ export function TaskBox () {
                     ))}
                     
                                          
-                </div>
-                                     
+                </div>                                     
             </div>
             {showComfirmationModal && (
                 <ConfirmationModal
@@ -102,8 +101,7 @@ export function TaskBox () {
                     onCancel={cancelDeleteTask}
                     onConfirm={confirmdeleteTask}
                 />
-            )}
-            
+            )}            
         </main>
     );
 }

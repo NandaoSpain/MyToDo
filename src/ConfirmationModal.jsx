@@ -6,8 +6,8 @@ export function ConfirmationModal({ message, onCancel, onConfirm}) {
             <div className={styles.modal}>
                 <p>{message}</p>
                 <div className={styles.buttons}>
-                    <button onClick={onCancel}>Cancelar</button>
-                    <button onClick={onConfirm}>Confirmar</button>
+                    <button className={styles.button} onClick={onCancel}>Cancelar</button>
+                    <button className={styles.button} onClick={onConfirm}>Confirmar</button>
                 </div>
             </div>
         </div>
